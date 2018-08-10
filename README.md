@@ -1,3 +1,7 @@
+# Wedding website
+
+This is my own personal wedding website written in Angular and NodeJS, and supported by a MongoDB cloud instance.
+
 # Nimakevinwedding
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
