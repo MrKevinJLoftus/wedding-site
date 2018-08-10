@@ -63,7 +63,6 @@ router.post("/login", (req, res, next) => {
           message: "Authorization failed."
         });
       }
-      console.log(fetchedUser.isAdmin);
       // hashes match, correct password entered
       // time to generate a JSON token for the user
       // using node package jsonwebtoken

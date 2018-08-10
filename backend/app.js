@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_ATLAS_CS)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-// app.use("/", express.static(path.join(__dirname, "angular")));
+app.use("/", express.static(path.join(__dirname, "angular")));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*");
@@ -32,8 +32,8 @@ app.use((req, res, next) => {
 
 app.use("/api/user", userRoutes)
 app.use("/api/rsvp", rsvpRoutes);
-// app.use((req, res, next) => {
-//     res.sendFile(path.join(__dirname, "angular", "index.html"));
-// });
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "angular", "index.html"));
+});
 
 module.exports = app;
