@@ -1,0 +1,32 @@
+<div id="rsvp" class="section-gray text-center">
+  <br />
+  <div class="container">
+    <hr class="horizontalSpacer">
+    <h1>RSVP</h1>
+    <div class="loadingSpinner" *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!isLoading">
+      <p>Please enter your login information provided in your invitation. If you did not receive login information, please contact Poornima or Kevin.</p>
+      <form (submit)="this.onLogin(loginForm)" #loginForm="ngForm">      
+        <input name="username"
+        ngModel
+        #usernameInput="ngModel"
+        type="username"
+        placeholder="Username"
+        required
+        username>
+        <br />
+        <input name="password"
+        ngModel
+        #passwordInput="ngModel"
+        type="password"
+        placeholder="Password"
+        required>
+        <br /><br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <hr class="horizontalSpacer">
+    </div>
+  </div>
+</div>

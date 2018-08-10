@@ -1,0 +1,32 @@
+<div id="rsvp" class="section-gray text-center">
+  <br /><br />
+  <h1>Create A User</h1>
+  <div class="container">
+    <div class="loadingSpinner" *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="row">
+      <div *ngIf="!isLoading">
+        <p>Enter login information for a guest.</p>
+        <form (submit)="this.onSignup(loginForm)" #loginForm="ngForm">      
+          <input name="username"
+          ngModel
+          #usernameInput="ngModel"
+          type="username"
+          placeholder="Username"
+          required>
+          <br />
+          <input name="password"
+          ngModel
+          #passwordInput="ngModel"
+          type="password"
+          placeholder="Password"
+          required>
+          <br /><br />
+          <button *ngIf="!isLoading" type="submit" class="btn btn-primary">Create</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <br /><br />
+</div>

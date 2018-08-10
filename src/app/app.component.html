@@ -1,0 +1,18 @@
+<div id="wrapper">
+  <div id="page" class="div-middle">
+    <div>
+      <app-header *ngIf="this.isHomeSelected"></app-header>
+    </div>
+    <div class="sticky-container" style="position: relative;">
+      <div ngui-sticky class="nav-header" style="position: relative;">
+        <app-nav></app-nav>
+      </div>
+      <div style="position: relative;">
+        <router-outlet></router-outlet>
+      </div>
+      <div>
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+</div>

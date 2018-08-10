@@ -1,0 +1,7 @@
+.big-background-image {
+    background-image: url('../../assets/img/bab_nima.jpg');
+    width: 100%;
+    height: 100%;
+    background-position-x: 50%;
+    background-position-y: 50%;
+}
