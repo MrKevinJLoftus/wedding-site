@@ -25,7 +25,7 @@ export class NavComponent implements OnInit, OnDestroy {
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
-  
+
   logout() {
     this.authService.logout();
   }
@@ -33,11 +33,10 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router) {
     router.events.subscribe((val) => {
       this.onChangedRoute();
-    })
+    });
    }
 
   ngOnInit() {
-    console.log("nav Init");
     this.userIsAuthenticated = this.authService.getIsAuthenticated();
     this.authListenerSub = this.authService
       .getAuthStatusListener()
@@ -49,7 +48,7 @@ export class NavComponent implements OnInit, OnDestroy {
       .getAuthAdminStatusListener()
       .subscribe(isAdmin => {
         this.userIsAdmin = isAdmin;
-      })
+      });
   }
 
   ngOnDestroy() {

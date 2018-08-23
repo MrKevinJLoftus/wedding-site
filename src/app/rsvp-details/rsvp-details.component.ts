@@ -9,6 +9,7 @@ export class RsvpDetailsComponent implements OnInit {
 
   // want to grab the guests added for the user and list them
   // guests will then be assigned 'attending' or 'not attending'
+  isLoading = false;
 
   constructor() { }
 
