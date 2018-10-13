@@ -8,12 +8,12 @@
         <ul class="sf-menu" id="primary-menu">
           <li><a routerLink="/home">Home</a></li>
           <li><a routerLink="/whenwhere">When &amp; Where</a></li>
-          <li><a routerLink="/gallery">Gallery</a></li>
+          <!-- <li><a routerLink="/gallery">Gallery</a></li> -->
           <li><a routerLink="/ceremony">Ceremony</a></li>
-          <li *ngIf="!userIsAuthenticated"><a routerLink="/rsvp">RSVP</a></li>
-          <li *ngIf="userIsAuthenticated"><a routerLink="/rsvp-details">RSVP</a></li>
-          <li><a *ngIf="userIsAuthenticated && userIsAdmin" routerLink="/createUser">Create User</a></li>
-          <li><a href="#" *ngIf="userIsAuthenticated" (click)="logout()">Logout</a></li>
+          <!-- <li *ngIf="!userIsAuthenticated"><a routerLink="/rsvp">RSVP</a></li> -->
+          <!-- <li *ngIf="userIsAuthenticated"><a routerLink="/rsvp-details">RSVP</a></li> -->
+          <!-- <li><a *ngIf="userIsAuthenticated && userIsAdmin" routerLink="/createUser">Create User</a></li> -->
+          <!-- <li><a href="#" *ngIf="userIsAuthenticated" (click)="logout()">Logout</a></li> -->
         </ul>
       </nav>
     </div>

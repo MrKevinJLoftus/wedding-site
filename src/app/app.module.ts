@@ -18,11 +18,12 @@ import { CeremonyDetailsComponent } from './ceremony-details/ceremony-details.co
 import { ParallaxModule, ParallaxConfig } from '../../node_modules/ngx-parallax';
 import { NguiStickyModule } from '../../node_modules/@ngui/sticky';
 import { RsvpComponent } from './rsvp/rsvp.component';
-import { MatProgressSpinnerModule } from '@angular/material';
+
 import { SignupComponent } from './auth/signup/signup.component';
 import { RsvpDetailsComponent } from './rsvp-details/rsvp-details.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '../../node_modules/@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -46,10 +47,10 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule,
     AppRoutingModule,
     ParallaxModule,
-    NguiStickyModule
+    NguiStickyModule,
+    AngularMaterialModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

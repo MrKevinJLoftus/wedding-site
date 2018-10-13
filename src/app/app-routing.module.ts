@@ -15,12 +15,12 @@ const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
     { path: 'whenwhere', component: WhenWhereComponent },
-    { path: 'gallery', component: GalleryComponent },
-    { path: 'ceremony', component: CeremonyDetailsComponent },
-    { path: 'rsvp', component: RsvpComponent },
+    // { path: 'gallery', component: GalleryComponent },
+    { path: 'ceremony', component: CeremonyDetailsComponent }
+    // { path: 'rsvp', component: RsvpComponent },
     // { path: 'createUser', component: SignupComponent },
-    { path: 'createUser', component: SignupComponent, canActivate: [AuthGuard, AuthAdminGuard] },
-    { path: 'rsvp-details', component: RsvpDetailsComponent, canActivate: [AuthGuard] }
+    // { path: 'createUser', component: SignupComponent, canActivate: [AuthGuard, AuthAdminGuard] },
+    // { path: 'rsvp-details', component: RsvpDetailsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
