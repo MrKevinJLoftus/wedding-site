@@ -10,6 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class RsvpComponent implements OnInit {
 
   isLoading = false;
+  isReleased = false;
 
   onLogin(form: NgForm) {
     if (form.invalid) {

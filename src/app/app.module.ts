@@ -24,6 +24,7 @@ import { RsvpDetailsComponent } from './rsvp-details/rsvp-details.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '../../node_modules/@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { AngularMaterialModule } from './angular-material.module';
+import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AngularMaterialModule } from './angular-material.module';
     CeremonyDetailsComponent,
     RsvpComponent,
     SignupComponent,
-    RsvpDetailsComponent
+    RsvpDetailsComponent,
+    TimelineComponent
   ],
   imports: [
     BrowserModule,
