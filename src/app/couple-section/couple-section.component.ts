@@ -18,7 +18,7 @@ import {
       })),
       state('hide', style({
         opacity: 0,
-        transform: "translate3d(0, 50px, 0)"
+        transform: 'translate3d(0, 50px, 0)'
       })),
       transition('show => hide', animate('500ms ease-out')),
       transition('hide => show', animate('500ms ease-in'))

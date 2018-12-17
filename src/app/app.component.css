@@ -2,3 +2,6 @@
     margin: 0;
     background: #fff;
   }
+.sticky-container {
+  overflow: hidden !important;
+}
