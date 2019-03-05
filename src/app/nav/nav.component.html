@@ -10,6 +10,7 @@
           <li><a routerLink="/whenwhere">When &amp; Where</a></li>
           <li><a routerLink="/ceremony">Ceremony</a></li>
           <li><a routerLink="/rsvp">RSVP</a></li>
+          <li *ngIf="userIsAuthenticated"><a class="pointer" (click)="logout()">Logout</a></li>
         </ul>
       </nav>
     </div>

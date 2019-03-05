@@ -1,0 +1,48 @@
+<div class="card" *ngIf="!this.isPlusOne">
+  <div class="card-title">
+      <span *ngIf="this.isAttending"><b>{{ firstName }}&nbsp;{{ lastName }}</b></span>
+      <span *ngIf="!this.isAttending" class="notAttending"><s>{{ firstName }}&nbsp;{{ lastName }}</s></span>
+  </div>
+  <div class="card-body">
+    <button class="acceptBtn sharp btn customBtn" (click)="toggleAccept(true)">
+      Accepts With Pleasure<span *ngIf="this.isAttending">&#x2714;</span>
+    </button>
+    <button class="declineBtn sharp btn customBtn" (click)="toggleAccept(false)">
+      Regretfully Declines<span *ngIf="!this.isAttending">&#x2714;</span>
+    </button>
+  </div>
+</div>
+<div class="card" *ngIf="this.isPlusOne">
+  <div class="card-title">
+    <span *ngIf="!firstName">Your Plus One</span>
+    <span *ngIf="firstName || lastName">{{firstName}}&nbsp;{{lastName}} (Your Plus One)</span>
+  </div>
+  <div class="card-body">
+    <div *ngIf="this.isAttending">
+      <label for="firstName">First Name:&nbsp;</label>
+      <input id="firstName" placeholder="First Name" required
+      type="text" [(ngModel)]="firstName" #fn="ngModel"
+      (change)="emitUpdatedGuestInfo()">
+      <div *ngIf="fn.invalid && (fn.dirty || fn.touched)" class="sixty text-center alert alert-danger">
+        <div *ngIf="fn?.errors.required">First name is required.</div>
+      </div>
+      <br />
+      <br />
+      <label for="lastName">Last Name:&nbsp;</label>
+      <input id="lastName" placeholder="Last Name" required
+      type="text" [(ngModel)]="lastName" #ln="ngModel"
+      (change)="emitUpdatedGuestInfo()">
+      <div *ngIf="ln.invalid && (ln.dirty || ln.touched)" class="sixty text-center alert alert-danger">
+          <div *ngIf="ln?.errors.required">Last name is required.</div>
+        </div>
+      <br />
+      <br />
+    </div>
+    <button class="acceptBtn sharp btn customBtn" (click)="toggleAccept(true)">
+      Accepts With Pleasure<span *ngIf="this.isAttending">&#x2714;</span>
+    </button>
+    <button class="declineBtn sharp btn customBtn" (click)="toggleAccept(false)">
+      I Am Not Bringing a Plus One<span *ngIf="!this.isAttending">&#x2714;</span>
+    </button>
+  </div>
+</div>

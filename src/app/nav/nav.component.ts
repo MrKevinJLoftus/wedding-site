@@ -13,10 +13,8 @@ export class NavComponent implements OnInit, OnDestroy {
   isHomeSelected = false;
   navbarOpen = false;
   userIsAuthenticated = false;
-  userIsAdmin = false;
 
   private authListenerSub: Subscription;
-  private authAdminListenerSub: Subscription;
 
   onChangedRoute() {
    this.isHomeSelected = this.router.url === '/home' || this.router.url === '/';
@@ -43,12 +41,6 @@ export class NavComponent implements OnInit, OnDestroy {
       .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
-    this.userIsAdmin = this.authService.getIsAdmin();
-    this.authAdminListenerSub = this.authService
-      .getAuthAdminStatusListener()
-      .subscribe(isAdmin => {
-        this.userIsAdmin = isAdmin;
-      });
   }
 
   ngOnDestroy() {

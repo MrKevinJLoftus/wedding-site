@@ -1,0 +1,42 @@
+.card-title {
+  font-size: 2em;
+}
+
+.notAttending {
+  font-style: italic;
+}
+
+.acceptBtn {
+  background-color: #4B0082;
+}
+
+.acceptBtn:hover, .acceptBtn:active, .acceptBtn:focus {
+  background-color: rgb(123, 0, 211) !important;
+}
+
+.declineBtn {
+  background-color: #848484;
+}
+
+.declineBtn:hover, .declineBtn:active, .declineBtn:focus {
+  background-color: #616161;
+}
+
+.selectedBtn {
+  border: solid black 2px;
+}
+
+.customBtn {
+  width: 60%;
+  max-width: 450px !important;
+  min-width: 300px !important;
+  color: white;
+}
+
+.card {
+  /* border: solid black 2px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+

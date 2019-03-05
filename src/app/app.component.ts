@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {
     router.events.subscribe((val) => {
       this.onChangedRoute();
-    })
+    });
    }
 
   ngOnInit() {
@@ -36,5 +36,4 @@ export class AppComponent implements OnInit {
         this.fixed = false;
       }
     }
-    
 }

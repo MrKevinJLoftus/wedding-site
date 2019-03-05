@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Guests for {{ user }}</h1>
+  <div *ngFor="let guest of guests">
+    <label>First Name:</label>
+    <input type="text" [(ngModel)]="guest.firstName">
+    <br />
+    <label>Last Name:</label>
+    <input type="text" [(ngModel)]="guest.lastName">
+    <br/>
+    <label>Is Plus One:</label>
+    <input type="checkbox" [(ngModel)]="guest.isPlusOne">
+  </div>
+  <button class="btn btn-info" (click)="addGuest()">Additional Guest +</button>
+  <br />
+  <br />
+  <div>
+    <button class="btn btn-info" (click)="toggleHotel()">Toggle Hotel Visibility For These Guests</button>
+  </div>
+  <p *ngIf="canSeeHotel">These guests <em style="color: green">CAN</em> see the hotel bloc information.</p>
+  <p *ngIf="!canSeeHotel">These guests <em style="color: red">CANNOT</em> see the hotel bloc information.</p>
+  <br />
+  <br />
+  <button class="btn btn-primary" (click)="saveGuests()">Add Guests To User</button>
+  <em>Clicking this button overwrites any previously saved guests for the user.</em>
+  <br />
+  <br />
+  <br />
+</div>

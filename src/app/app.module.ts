@@ -8,7 +8,7 @@ import { CoupleSectionComponent } from './couple-section/couple-section.componen
 import { CountdownComponent } from './countdown/countdown.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { WhenWhereComponent } from './when-where/when-where.component';
@@ -25,6 +25,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '../../node_modules/@angular
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { AngularMaterialModule } from './angular-material.module';
 import { TimelineComponent } from './timeline/timeline.component';
+import { AddGuestsComponent } from './add-guests/add-guests.component';
+import { GuestComponent } from './rsvp-details/guest/guest.component';
 
 @NgModule({
   declarations: [
@@ -42,11 +44,14 @@ import { TimelineComponent } from './timeline/timeline.component';
     RsvpComponent,
     SignupComponent,
     RsvpDetailsComponent,
-    TimelineComponent
+    TimelineComponent,
+    AddGuestsComponent,
+    GuestComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
