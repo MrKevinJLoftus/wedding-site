@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import url("/assets/styles/animate.css"); */
-@import url("/assets/styles/icomoon.css");
-@import url("/assets/styles/bootstrap.css");
-@import url("/assets/styles/superfish.css");
+@import url("./assets/styles/icomoon.css");
+@import url("./assets/styles/bootstrap.css");
+@import url("./assets/styles/superfish.css");
 /* @import url("/assets/styles/magnific-popup.css"); */
-@import url("/assets/styles/style.css");
+@import url("./assets/styles/style.css");
 @import url('https://fonts.googleapis.com/css?family=Eczar');
 @import url('https://fonts.googleapis.com/css?family=Montez');
