@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Guest } from 'src/app/rsvp-details/guest/guest.model';
+import { Guest } from 'src/app/_models/guest.model';
 
 @Component({
   selector: 'app-guest',
@@ -22,7 +22,7 @@ export class GuestComponent implements OnInit {
   }
 
   emitUpdatedGuestInfo() {
-    if (this.isPlusOne && this.isAttending && (this.firstName.length > 0 && this.lastName.length > 0)) {
+    if (this.isPlusOne && this.isAttending && !(this.firstName.length > 0 && this.lastName.length > 0)) {
       this.isValid = false;
     } else {
       this.isValid = true;

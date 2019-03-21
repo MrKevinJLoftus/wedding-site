@@ -1,21 +1,22 @@
 <div class="section-gray text-center">
   <div class="container">
-    <main>
+    <main class="responsive-main">
       <hr class="horizontalSpacer">
       <h1>RSVP</h1>
       <div class="loadingSpinner" *ngIf="isLoading">
-        <mat-spinner></mat-spinner>
+        <span class="spinner"></span>
       </div>
       <div *ngIf="!isLoading && isReleased">
         <p>Please enter the login information provided in your invitation. If you did not receive login information, please contact Poornima or Kevin.</p>
-        <form (submit)="this.onLogin(loginForm)" #loginForm="ngForm">
+        <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
           <input name="username"
           ngModel
           #usernameInput="ngModel"
           type="username"
           placeholder="Username"
           required
-          username>
+          username
+          (focus)="clearMessage()">
           <br />
           <input name="password"
           ngModel
@@ -23,8 +24,10 @@
           type="password"
           placeholder="Password"
           required
-          password>
+          password
+          (focus)="clearMessage()">
           <br /><br />
+          <app-message></app-message>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <hr class="horizontalSpacer">

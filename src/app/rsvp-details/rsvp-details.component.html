@@ -3,7 +3,7 @@
   <h1>RSVP - Details</h1>
   <div class="container">
     <div class="loadingSpinner" *ngIf="isLoading">
-      <mat-spinner></mat-spinner>
+      <span class="spinner"></span>
     </div>
     <div *ngIf="!isLoading" class="container">
       <p>Please let us know who will be attending:</p>
@@ -32,9 +32,7 @@
           <div>
             <br />
             <button class="btn" type="submit" [disabled]="email.invalid">Submit RSVP</button>
-            <div *ngIf="!isValid" class="sixty alert alert-danger">
-              <div>First and last names are required.</div>
-            </div>
+            <app-message></app-message>
           </div>
         </form>
       </div>

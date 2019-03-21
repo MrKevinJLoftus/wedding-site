@@ -1,9 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 // import { FormGroup, FormControl } from '@angular/forms';
-import { GuestService } from './guest/guest.service';
-import { Guest } from './guest/guest.model';
+import { GuestService } from '../_services/guest.service';
+import { Guest } from '../_models/guest.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { RsvpService } from '../_services/rsvp.service';
+import { uiRsvp } from '../_models/rsvp.model';
+import { LoadingService } from '../_services/loading.service';
+import { MessageService } from '../_services/message.service';
 
 @Component({
   selector: 'app-rsvp-details',
@@ -41,18 +45,22 @@ export class RsvpDetailsComponent implements OnInit, OnDestroy {
       if (this.guests[i].isAttending && this.guests[i].isPlusOne && !this.guests[i].isValid) {
         this.guests[i].firstName = '';
         this.isValid = false;
+        this.messageService.setMessage('First and last names are required for Plus Ones.','alert-danger');
         return;
       }
     }
-    const data = {
+    const data: uiRsvp = {
       guests: this.guests,
       email: this.userEmail,
       comments: this.userComments
     };
-    console.log(data);
+    this.rsvpService.saveRsvp(data);
   }
 
-  constructor(public guestService: GuestService) { }
+  constructor(public guestService: GuestService,
+    public rsvpService: RsvpService,
+    public loadingService: LoadingService,
+    public messageService: MessageService) { }
 
   ngOnInit() {
     this.guestService.getGuests();
@@ -61,6 +69,9 @@ export class RsvpDetailsComponent implements OnInit, OnDestroy {
         this.guests = updatedGuests;
       }
     ));
+    this.subscriptions.push(this.loadingService.getIsLoadingListener().subscribe((b) => {
+      this.isLoading = b;
+    }));
   }
 
   ngOnDestroy() {

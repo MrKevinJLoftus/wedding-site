@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Guest } from '../rsvp-details/guest/guest.model';
-import { GuestService } from '../rsvp-details/guest/guest.service';
+import { Guest } from '../_models/guest.model';
+import { GuestService } from '../_services/guest.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 

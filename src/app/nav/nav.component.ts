@@ -25,7 +25,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout(true);
   }
 
   constructor(private authService: AuthService, private router: Router) {

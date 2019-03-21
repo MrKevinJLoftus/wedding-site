@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { MessageService } from '../_services/message.service';
+import { LoadingService } from '../_services/loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,11 @@ export class AuthService {
   private userId: string;
   private authStatusListener = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    public messageService: MessageService,
+    public loadingService: LoadingService) {}
 
   getToken() {
     return this.token;
@@ -35,6 +41,7 @@ export class AuthService {
   }
 
   createUser(username: string, password: string) {
+    this.loadingService.setIsLoading(true);
     const authData: AuthData = {username: username, password: password};
     this.http.post<{token: string, expiresIn: number, userId: string}>('http://localhost:3000/api/user/signup', authData)
       .subscribe(response => {
@@ -60,10 +67,12 @@ export class AuthService {
           const expiresInDuration = response.expiresIn;
           this.loginSetup(expiresInDuration, response.userId, token);
         } else {
-          this.logout();
+          this.logout(false);
+          this.messageService.setMessage('Your username or password was incorrect. Please try again.','alert-danger');
         }
     }, error => {
-      this.logout();
+      this.messageService.setMessage('Your username or password was incorrect. Please try again.','alert-danger');
+      this.logout(false);
     });
   }
 
@@ -83,13 +92,16 @@ export class AuthService {
     }
   }
 
-  logout() {
+  logout(navigateAway: Boolean) {
     this.token = null;
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
-    this.router.navigate(['/']);
+    this.loadingService.setIsLoading(false);
+    if (navigateAway) {
+      this.router.navigate(['/']);
+    }
   }
 
   private loginSetup(expiresInDuration, userId, token) {
@@ -100,12 +112,13 @@ export class AuthService {
     const now = new Date();
     const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
     this.saveAuthData(token, expirationDate, this.userId);
+    this.loadingService.setIsLoading(false);
     this.router.navigate(['/rsvp-details']);
   }
 
   private setAuthTimer(duration: number) {
     this.tokenTimer = setTimeout(() => {
-      this.logout();
+      this.logout(true);
     }, duration * 1000);
   }
 
