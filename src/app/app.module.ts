@@ -23,12 +23,14 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { RsvpDetailsComponent } from './rsvp-details/rsvp-details.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '../../node_modules/@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
-import { ClarityModule } from '@clr/angular';
 import { TimelineComponent } from './timeline/timeline.component';
 import { AddGuestsComponent } from './add-guests/add-guests.component';
 import { GuestComponent } from './rsvp-details/guest/guest.component';
 import { MessageComponent } from './message/message.component';
 import { WeddingDetailsComponent } from './wedding-details/wedding-details.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { WeddingDetailsComponent } from './wedding-details/wedding-details.compo
     AddGuestsComponent,
     GuestComponent,
     MessageComponent,
-    WeddingDetailsComponent
+    WeddingDetailsComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { WeddingDetailsComponent } from './wedding-details/wedding-details.compo
     AppRoutingModule,
     ParallaxModule,
     NguiStickyModule,
-    ClarityModule
+    AccordionModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

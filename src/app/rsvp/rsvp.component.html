@@ -3,10 +3,7 @@
     <main class="responsive-main">
       <hr class="horizontalSpacer">
       <h1>RSVP</h1>
-      <div class="loadingSpinner" *ngIf="isLoading">
-        <span class="spinner"></span>
-      </div>
-      <div *ngIf="!isLoading && isReleased">
+      <div *ngIf="isReleased">
         <p>Please enter the login information provided in your invitation. If you did not receive login information, please contact Poornima or Kevin.</p>
         <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
           <input name="username"
@@ -28,7 +25,8 @@
           (focus)="clearMessage()">
           <br /><br />
           <app-message></app-message>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" *ngIf="!isLoading">Submit</button>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
         </form>
         <hr class="horizontalSpacer">
       </div>

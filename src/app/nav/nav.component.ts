@@ -13,8 +13,8 @@ export class NavComponent implements OnInit, OnDestroy {
   isHomeSelected = false;
   navbarOpen = false;
   userIsAuthenticated = false;
-
-  private authListenerSub: Subscription;
+  userHasRsvpdBefore = false;
+  private subscriptions: Subscription[] = [];
 
   onChangedRoute() {
    this.isHomeSelected = this.router.url === '/home' || this.router.url === '/';
@@ -29,22 +29,29 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   constructor(private authService: AuthService, private router: Router) {
-    router.events.subscribe((val) => {
+    this.subscriptions.push(router.events.subscribe((val) => {
       this.onChangedRoute();
-    });
+    }));
    }
 
   ngOnInit() {
     this.userIsAuthenticated = this.authService.getIsAuthenticated();
-    this.authListenerSub = this.authService
+    this.subscriptions.push(this.authService
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
-    });
+    }));
+    
   }
 
   ngOnDestroy() {
-    this.authListenerSub.unsubscribe();
+    this.unsubscribe();
+  }
+
+  unsubscribe() {
+    this.subscriptions.forEach((s) => {
+      s.unsubscribe();
+    });
   }
 
 }

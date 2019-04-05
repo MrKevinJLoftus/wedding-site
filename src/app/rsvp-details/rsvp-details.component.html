@@ -1,42 +1,44 @@
 <div *ngIf="guests && guests.length > 0" class="section-gray text-center">
   <br /><br />
   <h1>RSVP - Details</h1>
-  <div class="container">
-    <div class="loadingSpinner" *ngIf="isLoading">
-      <span class="spinner"></span>
-    </div>
-    <div *ngIf="!isLoading" class="container">
+    <div class="container">
       <p>Please let us know who will be attending:</p>
       <div *ngFor="let guest of guests" class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
           <app-guest [details]="guest" (guestUpdated)="updateGuest($event)"></app-guest>
         </div>
         <hr class="horizontalSpacer">
       </div>
       <div class="row">
-        <form (ngSubmit)="onSubmit()">
-          <label for="email">Your Email Address:</label>
-          <br />
-          <input name="email" type="email" email
-          id="email" [(ngModel)]="userEmail"
-          #email="ngModel" required>
-          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="sixty alert alert-danger">
-            <div *ngIf="email?.errors.required">Email is required.</div>
-            <div *ngIf="email?.errors.email">Must be a valid email address.</div>
-          </div>
-          <br /><br />
-          <label for="comments">Additional comments:</label>
-          <br />
-          <textarea class="sixty" name="comments" id="comments" [(ngModel)]="userComments" placeholder="Additional comments"></textarea>
-          <div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <form (ngSubmit)="onSubmit()">
+            <label for="email">Your Email Address:</label>
             <br />
-            <button class="btn" type="submit" [disabled]="email.invalid">Submit RSVP</button>
-            <app-message></app-message>
-          </div>
-        </form>
+            <input name="email" type="email" email
+            id="email" [(ngModel)]="userEmail"
+            #email="ngModel" required>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="sixty alert alert-danger">
+              <div *ngIf="email?.errors.required">Email is required.</div>
+              <div *ngIf="email?.errors.email">Must be a valid email address.</div>
+            </div>
+            <br /><br />
+            <label for="comments">Additional comments:</label>
+            <br />
+            <textarea class="sixty" name="comments" id="comments" [(ngModel)]="userComments" placeholder="Additional comments"></textarea>
+            <div>
+              <br />
+              <button class="btn" type="submit" [disabled]="email.invalid || isLoading">Submit RSVP</button>
+              <app-message></app-message>
+              <div *ngIf="isLoading">
+                <br />
+                <app-loading-spinner></app-loading-spinner>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
   </div>
   <br /><br />
 </div>

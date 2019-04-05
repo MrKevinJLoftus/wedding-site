@@ -3,9 +3,12 @@ import { HttpClient } from '@angular/common/http';
 
 import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MessageService } from '../_services/message.service';
 import { LoadingService } from '../_services/loading.service';
+import { RsvpService } from '../_services/rsvp.service';
+import { detailedRsvp } from '../_models/rsvp.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +25,8 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     public messageService: MessageService,
-    public loadingService: LoadingService) {}
+    public loadingService: LoadingService,
+    public rsvpService: RsvpService) {}
 
   getToken() {
     return this.token;
@@ -113,7 +117,8 @@ export class AuthService {
     const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
     this.saveAuthData(token, expirationDate, this.userId);
     this.loadingService.setIsLoading(false);
-    this.router.navigate(['/rsvp-details']);
+    this.postLoginNavigation();
+    // this.router.navigate(['/rsvp-details']);
   }
 
   private setAuthTimer(duration: number) {
@@ -148,4 +153,16 @@ export class AuthService {
     };
   }
 
+  private postLoginNavigation() {
+    this.http.get<{ detailedRsvp: detailedRsvp }>('http://localhost:3000/api/rsvp')
+      .pipe(take(1))
+      .subscribe(response => {
+        console.log(response.detailedRsvp);
+        if (response.detailedRsvp) {
+          this.router.navigate(['/wedding-details']);
+        } else {
+          this.router.navigate(['/rsvp-details']);
+        }
+    });
+  }
 }

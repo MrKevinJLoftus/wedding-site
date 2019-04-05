@@ -21,16 +21,6 @@
   margin: auto;
   padding: 0;
 }
-
-@media (max-width: 424px) {
-  .responsive-main {
-    padding-top: 4em;
-    padding-bottom: 4em;
-  }
-}
-@media (min-width:425px) {
-  .responsive-main {
-    padding-top: 11em;
-    padding-bottom: 11em;
-  }
+.responsive-main {
+  padding-top: 4em;
 }

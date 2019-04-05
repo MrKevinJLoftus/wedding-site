@@ -1,79 +1,124 @@
 <div class="section-gray text-center">
+  <br />
   <div class="container">
     <main>
       <div class="section-gray">
         <div class="row">
           <div class="col-6 offset-3">
-            <h1>Thank you for your RSVP!</h1>
+            <h1 *ngIf="isAnyoneComing">We look forward to seeing you!</h1>
+            <h1 *ngIf="!isAnyoneComing">We'll be missing you!</h1>
           </div>
         </div>
-        <div *ngIf="rsvpDetails">
-          <hr class="horizontalSpacer" />
-          <div class="row">
-            <div class="col-6 offset-3">
-              <div class="card">
-                <div class="card-header">
-                    Your RSVP Details
+        <accordion>
+          <accordion-group *ngIf="hasRsvpd" heading="Your RSVP" [isOpen]="true">
+            <div class="bkc">
+              <div class="row">
+                <div class="col-6">
+                  <h2><u>Attending:</u></h2>
+                  <div *ngFor="let guest of rsvpDetails.guests">
+                    <p *ngIf="guest.isAttending">{{guest.firstName}}&nbsp;{{guest.lastName}}</p>
+                  </div>
                 </div>
-                <div class="card-block">
-                    <div class="card-title">
-                      Attending
-                    </div>
-                    <div class="card-text">
-                      <p *ngFor="let g of rsvpDetails.guests">
-                        <span *ngIf="g.isAttending">{{g.firstName}}&nbsp;{{g.lastName}}</span>
-                      </p>
-                    </div>
-                    <div class="card-title">
-                      Not Attending
-                    </div>
-                    <div class="card-text">
-                      <p *ngFor="let g of rsvpDetails.guests">
-                        <span *ngIf="!g.isAttending">{{g.firstName}}&nbsp;{{g.lastName}}</span>
-                      </p>
-                    </div>
-                    <div class="card-title">
-                      Comments
-                    </div>
-                    <div class="card-text">
-                      <p>{{rsvpDetails.rsvp.comments}}</p>
-                    </div>
-                    <div class="card-title">
-                      Email Sent To {{rsvpDetails.email}} on {{rsvpDetails.rsvp.dateSubmitted}}
-                    </div>
+                <div class="col-6">
+                  <h2><u>Not Attending:</u></h2>
+                  <div *ngFor="let guest of rsvpDetails.guests">
+                    <p *ngIf="!guest.isAttending">{{guest.firstName}}&nbsp;{{guest.lastName}}</p>
+                  </div>
                 </div>
-                <div class="card-footer">
-                    <button class="btn btn-sm btn-link" (click)="rsvpAgain()">Edit My RSVP</button>
+              </div>
+              <hr class="horizontalSpacer" />
+              <div class="row">
+                <div class="col-6 offset-3">
+                  <p>Your confirmation email was sent to {{rsvpDetails.email}} on {{rsvpDetails.rsvp.dateSubmitted | date}}.</p>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button class="btn btn-sm btn-link btn-block border" (click)="rsvpAgain()"><b>Edit My RSVP</b></button>
+                </div>
+              </div>
             </div>
+          </accordion-group>
+          <accordion-group *ngIf="!hasRsvpd" heading="RSVP">
+            <div class="row">
+              <div class="col-sm-12">
+                <button class="btn btn-sm btn-link btn-block border" (click)="rsvpAgain()"><b>Please RSVP</b></button>
+              </div>
             </div>
-          </div>
-        </div>
-        <div *ngIf="isAnyoneComing">
-          <hr class="horizontalSpacer" />
-          <div class="row">
-            <div class="col-6 offset-3">
-              <p>Conditional message based on whether anyone from the party is coming or not.</p>
+          </accordion-group>
+          <accordion-group heading="Dinner">
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+                <p>
+                  Hors d'oeuvres will be served during the cocktail hour, and a vegetarian buffet of Indian cuisine will be served during the reception. Our menu includes:
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div *ngIf="showHotel">
-          <div class="row">
-            <div class="col-6 offset-3">
-              Conditionally show the hotel link here.
+            <div class="row">
+              <div class="col-sm-4">
+                <h2><u>Hors D'oeuvres</u></h2>
+                <ul>
+                  <li>Aam Palak Chaat</li>
+                  <li>Pani Puri</li>
+                  <li>Paneer Shashlik</li>
+                  <li>Mini Samosa</li>
+                  <li>Bhel Puri</li>
+                </ul>
+              </div>
+              <div class="col-sm-4">
+                <h2><u>Entrees</u></h2>
+                <ul>
+                  <li>Dal Makhani</li>
+                  <li>Baingan Bharta</li>
+                  <li>Vegetable Biryani</li>
+                  <li>Paneer Tikka Masala</li>
+                  <li>Vegetable Jalfrezi</li>
+                </ul>
+              </div>
+              <div class="col-sm-4">
+                <h2><u>Dessert</u></h2>
+                <ul>
+                  <li>Assorted Kulfi with Falooda</li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6 offset-3">
-            Mention the food will be veg buffet.
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6 offset-3">
-            Gift registry?
-          </div>
-        </div>
+          </accordion-group>
+          <accordion-group *ngIf="showHotel" heading="Accommodations">
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+                <p>We have a wedding block of rooms at the BWI Airport Marriott available for our guests at a group rate of $99 per night. Please click the button below to reserve your room.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <a class="btn btn-sm btn-link btn-block"
+                target="_blank"
+                href="http://www.marriott.com/meeting-event-hotels/group-corporate-travel/groupCorp.mi?resLinkData=Patel-Loftus%20Wedding%20In%20Honor%20of%20Nima%20and%20Kevin%5EBWIAP%60PLWPLWA%7CPLWPLWB%6099.00%60USD%60true%605%608/16/19%608/18/19%607/26/19&app=resvlink&stop_mobi=yes">
+                  <b>Make A Reservation</b>
+                </a>
+              </div>
+            </div>
+          </accordion-group>
+          <accordion-group heading="Gift Registry">
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+                <p>Your presence at our Wedding is the greatest gift of all. However, if you wish to honor us with a gift, we have registered a list with Amazon.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <a class="btn btn-sm btn-link btn-block"
+                target="_blank"
+                href="https://www.amazon.com/wedding/kevin-loftus-poornima-patel-baltimore-august-2019/registry/1OVSD029OPWIR">
+                  <b>Browse Our Registry</b>
+                </a>
+              </div>
+            </div>
+          </accordion-group>
+        </accordion>
       </div>
     </main>
   </div>

@@ -19,6 +19,10 @@ export class GuestComponent implements OnInit {
   toggleAccept(attending: boolean) {
     this.isAttending = attending;
     this.emitUpdatedGuestInfo();
+    if (this.isPlusOne) {
+      this.firstName = '';
+      this.lastName = '';
+    }
   }
 
   emitUpdatedGuestInfo() {
@@ -37,7 +41,6 @@ export class GuestComponent implements OnInit {
       hasRSVPd: this.details.hasRSVPd,
       isValid: this.isValid
     });
-    console.log(`${this.firstName} isValid: ${this.isValid}`);
   }
 
   constructor() { }

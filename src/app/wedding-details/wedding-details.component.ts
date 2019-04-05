@@ -12,15 +12,18 @@ import { Router } from '@angular/router';
 export class WeddingDetailsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   rsvpDetails: detailedRsvp;
-  isAnyoneComing = false;
+  isAnyoneComing = true;
+  hasRsvpd = false;
   showHotel = false;
 
   constructor(public rsvpService: RsvpService,
     private router: Router) { }
 
   ngOnInit() {
+    this.rsvpService.getDetailedRsvp();
     this.subscriptions.push(this.rsvpService.rsvpUpdatedListener().subscribe(
       (savedRsvp) => {
+        this.hasRsvpd = true;
         this.rsvpDetails = savedRsvp;
         this.isAnyoneComing = this.rsvpDetails.guests.filter(g => g.isAttending).length > 0;
         this.showHotel = this.rsvpDetails.guests[0].canSeeHotel;

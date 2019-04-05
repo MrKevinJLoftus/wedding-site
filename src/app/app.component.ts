@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth/auth.service';
 import { MessageService } from './_services/message.service';
+import { RsvpService } from './_services/rsvp.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,9 @@ export class AppComponent implements OnInit {
    this.messageService.clearMessage();
   }
 
-  constructor(private authService: AuthService, private router: Router, public messageService: MessageService) {
+  constructor(private authService: AuthService, 
+    private router: Router, 
+    public messageService: MessageService) {
     router.events.subscribe((val) => {
       this.onChangedRoute();
     });

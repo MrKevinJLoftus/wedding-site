@@ -29,14 +29,18 @@
 .customBtn {
   width: 60%;
   max-width: 450px !important;
-  min-width: 300px !important;
+  min-width: 200px !important;
+  white-space: normal;
   color: white;
 }
 
-.card {
+.custom-card {
   /* border: solid black 2px; */
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
 
+.selectedBtn {
+  border: 2px solid black;
+}

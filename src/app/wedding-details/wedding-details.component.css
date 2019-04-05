@@ -1,0 +1,9 @@
+::ng-deep .panel-collapse {
+    background-color: lavender !important;
+}
+li {
+    list-style-type: none;
+}
+ul {
+    padding: 0;
+}

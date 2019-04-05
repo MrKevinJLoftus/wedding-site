@@ -1,7 +1,1 @@
-<div *ngIf="message" class="alert" [ngClass]="message.type" role="alert">
-    <div class="alert-items">
-        <div class="alert-item static">
-            <span class="alert-text">{{message.message}}</span>
-        </div>
-    </div>
-</div>
+<alert *ngIf="message" [attr.type]="message.type">{{message.message}}</alert>

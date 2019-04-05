@@ -5,7 +5,7 @@ import { Guest } from '../_models/guest.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { RsvpService } from '../_services/rsvp.service';
-import { uiRsvp } from '../_models/rsvp.model';
+import { uiRsvp, detailedRsvp } from '../_models/rsvp.model';
 import { LoadingService } from '../_services/loading.service';
 import { MessageService } from '../_services/message.service';
 
@@ -26,8 +26,6 @@ export class RsvpDetailsComponent implements OnInit, OnDestroy {
   updateGuest(guestEvent) {
     for (let i = 0; i < this.guests.length; i++) {
       if (this.guests[i]._id === guestEvent._id) {
-        console.log(`Updating \'${guestEvent.firstName}`);
-        console.log(guestEvent);
         this.guests[i].isAttending = guestEvent.isAttending;
         if (this.guests[i].isPlusOne) {
           this.guests[i].firstName = guestEvent.firstName;
@@ -40,12 +38,13 @@ export class RsvpDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.messageService.clearMessage();
     // validate any attending plus ones have names
     for (let i = 0; i < this.guests.length; i++) {
       if (this.guests[i].isAttending && this.guests[i].isPlusOne && !this.guests[i].isValid) {
         this.guests[i].firstName = '';
         this.isValid = false;
-        this.messageService.setMessage('First and last names are required for Plus Ones.','alert-danger');
+        this.messageService.setMessage('First and last names are required for Plus Ones.',"danger");
         return;
       }
     }
@@ -69,6 +68,13 @@ export class RsvpDetailsComponent implements OnInit, OnDestroy {
         this.guests = updatedGuests;
       }
     ));
+    this.rsvpService.getDetailedRsvp();
+    this.rsvpService.rsvpUpdatedListener().subscribe(
+      updatedRsvp => {
+        this.userEmail = updatedRsvp.email;
+        this.userComments = updatedRsvp.rsvp.comments;
+      }
+    );
     this.subscriptions.push(this.loadingService.getIsLoadingListener().subscribe((b) => {
       this.isLoading = b;
     }));
