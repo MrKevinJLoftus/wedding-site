@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <form (ngSubmit)="onSubmit()">
+      <label for="email">Your Email Address:</label>
+      <br />
+      <input name="email" type="email" email
+      id="email" [(ngModel)]="userEmail"
+      #email="ngModel" required>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="sixty alert alert-danger">
+        <div *ngIf="email?.errors.required">Email is required.</div>
+        <div *ngIf="email?.errors.email">Must be a valid email address.</div>
+      </div>
+      <br /><br />
+      <label for="emailBody">Message:</label>
+      <br />
+      <textarea class="sixty" name="emailBody" id="emailBody" [(ngModel)]="emailBody" placeholder="Message"></textarea>
+      <div>
+        <br />
+        <button class="btn" type="submit" [disabled]="email.invalid || !emailBody || isLoading">Submit</button>
+        <app-message></app-message>
+        <div *ngIf="isLoading">
+          <br />
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -31,6 +31,7 @@ import { WeddingDetailsComponent } from './wedding-details/wedding-details.compo
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     GuestComponent,
     MessageComponent,
     WeddingDetailsComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -14,19 +14,10 @@ export class AddGuestsComponent implements OnInit, OnDestroy {
   user = '';
   subscriptions = [];
   guests: Guest[] = [];
-  canSeeHotel = true;
-
-  toggleHotel() {
-    this.canSeeHotel = !this.canSeeHotel;
-    this.guests.forEach(g => {
-      g.canSeeHotel = this.canSeeHotel;
-    });
-  }
 
   addGuest() {
     this.guests.push({_id: '', firstName: '', lastName: '', isPlusOne: false,
-    isAttending: false, canSeeHotel: false,
-    hasRSVPd: false, isValid: true});
+    isAttending: false, hasRSVPd: false, isValid: true});
   }
 
   saveGuests() {

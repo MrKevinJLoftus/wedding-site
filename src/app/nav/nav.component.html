@@ -10,7 +10,7 @@
           <li><a routerLink="/whenwhere">When &amp; Where</a></li>
           <li><a routerLink="/ceremony">Ceremony</a></li>
           <li *ngIf="!userIsAuthenticated"><a routerLink="/rsvp">RSVP</a></li>
-          <li *ngIf="userIsAuthenticated"><a routerLink="/rsvp-details">RSVP</a></li>
+          <li *ngIf="userIsAuthenticated && !userHasRsvpdBefore"><a routerLink="/rsvp-details">RSVP</a></li>
           <li *ngIf="userIsAuthenticated"><a routerLink="/wedding-details">Details</a></li>
           <li *ngIf="userIsAuthenticated"><a class="pointer" (click)="logout()">Logout</a></li>
         </ul>

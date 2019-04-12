@@ -19,7 +19,10 @@ export class MessageComponent implements OnInit, OnDestroy {
       (m) => {
         if (m) {
           console.log(`message received! *${m.type}* ${m.message}`);
-          this.message = m;
+          this.message = {
+            message: m.message,
+            type: m.type
+          };
         } else {
           this.message = null;
         }

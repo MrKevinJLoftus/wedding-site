@@ -25,10 +25,11 @@ export class GuestService {
               lastName: g.lastName,
               isPlusOne: g.isPlusOne,
               isAttending: g.isAttending,
-              canSeeHotel: g.canSeeHotel,
               hasRSVPd: g.hasRSVPd,
               isValid: true
             };
+          }).sort((a, b) => {
+            return a.isPlusOne > b.isPlusOne ? 1 : -1;
           });
         }
         this.guestsUpdated.next([...this.guests]);

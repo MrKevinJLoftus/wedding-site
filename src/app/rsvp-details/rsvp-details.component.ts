@@ -44,7 +44,7 @@ export class RsvpDetailsComponent implements OnInit, OnDestroy {
       if (this.guests[i].isAttending && this.guests[i].isPlusOne && !this.guests[i].isValid) {
         this.guests[i].firstName = '';
         this.isValid = false;
-        this.messageService.setMessage('First and last names are required for Plus Ones.',"danger");
+        this.messageService.setMessage('First and last names are required for attending Plus Ones.','danger');
         return;
       }
     }
@@ -69,12 +69,14 @@ export class RsvpDetailsComponent implements OnInit, OnDestroy {
       }
     ));
     this.rsvpService.getDetailedRsvp();
-    this.rsvpService.rsvpUpdatedListener().subscribe(
+    this.subscriptions.push(this.rsvpService.rsvpUpdatedListener().subscribe(
       updatedRsvp => {
-        this.userEmail = updatedRsvp.email;
-        this.userComments = updatedRsvp.rsvp.comments;
+        if (updatedRsvp && updatedRsvp.rsvp && updatedRsvp.email) {
+          this.userEmail = updatedRsvp.email;
+          this.userComments = decodeURI(updatedRsvp.rsvp.comments);
+        }
       }
-    );
+    ));
     this.subscriptions.push(this.loadingService.getIsLoadingListener().subscribe((b) => {
       this.isLoading = b;
     }));

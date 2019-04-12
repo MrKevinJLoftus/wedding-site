@@ -13,8 +13,9 @@ export class WeddingDetailsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   rsvpDetails: detailedRsvp;
   isAnyoneComing = true;
+  guestsAttending = [];
+  guestsNotAttending = [];
   hasRsvpd = false;
-  showHotel = false;
 
   constructor(public rsvpService: RsvpService,
     private router: Router) { }
@@ -23,10 +24,24 @@ export class WeddingDetailsComponent implements OnInit, OnDestroy {
     this.rsvpService.getDetailedRsvp();
     this.subscriptions.push(this.rsvpService.rsvpUpdatedListener().subscribe(
       (savedRsvp) => {
-        this.hasRsvpd = true;
-        this.rsvpDetails = savedRsvp;
-        this.isAnyoneComing = this.rsvpDetails.guests.filter(g => g.isAttending).length > 0;
-        this.showHotel = this.rsvpDetails.guests[0].canSeeHotel;
+        if (savedRsvp && savedRsvp.rsvp) {
+          this.hasRsvpd = true;
+          this.rsvpDetails = savedRsvp;
+          this.guestsAttending = this.rsvpDetails.guests.filter(g => g.isAttending);
+          this.guestsNotAttending = this.rsvpDetails.guests.filter(g => !g.isAttending).map((g) => {
+            if (!g.isPlusOne) {
+              return g;
+            } else {
+              if (!g.firstName && !g.lastName) {
+                g.firstName = 'Your';
+                g.lastName = 'Plus One';
+              }
+            }
+          });
+          this.isAnyoneComing = this.guestsAttending.length > 0;
+        } else {
+          this.hasRsvpd = false;
+        }
       }
     ));
   }

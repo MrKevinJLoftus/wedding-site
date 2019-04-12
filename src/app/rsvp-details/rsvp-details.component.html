@@ -11,12 +11,11 @@
         <hr class="horizontalSpacer">
       </div>
       <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
+        <div class="col-sm-8 offset-sm-2">
           <form (ngSubmit)="onSubmit()">
             <label for="email">Your Email Address:</label>
             <br />
-            <input name="email" type="email" email
+            <input class="sixty" name="email" type="email" email
             id="email" [(ngModel)]="userEmail"
             #email="ngModel" required>
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="sixty alert alert-danger">
@@ -26,10 +25,10 @@
             <br /><br />
             <label for="comments">Additional comments:</label>
             <br />
-            <textarea class="sixty" name="comments" id="comments" [(ngModel)]="userComments" placeholder="Additional comments"></textarea>
+            <textarea class="sixty" name="comments" id="comments" [(ngModel)]="userComments"></textarea>
             <div>
               <br />
-              <button class="btn" type="submit" [disabled]="email.invalid || isLoading">Submit RSVP</button>
+              <button class="btn submitBtn" type="submit" [disabled]="email.invalid || isLoading">Submit RSVP</button>
               <app-message></app-message>
               <div *ngIf="isLoading">
                 <br />

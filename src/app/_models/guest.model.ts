@@ -4,7 +4,6 @@ export interface Guest {
   lastName: string;
   isPlusOne: boolean;
   isAttending: boolean;
-  canSeeHotel: boolean;
   hasRSVPd: boolean;
   isValid: boolean;
 }

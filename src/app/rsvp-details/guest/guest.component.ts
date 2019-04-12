@@ -37,7 +37,6 @@ export class GuestComponent implements OnInit {
       lastName: this.lastName,
       isPlusOne: this.details.isPlusOne,
       isAttending: this.isAttending,
-      canSeeHotel: this.details.canSeeHotel,
       hasRSVPd: this.details.hasRSVPd,
       isValid: this.isValid
     });

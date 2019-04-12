@@ -118,7 +118,6 @@ export class AuthService {
     this.saveAuthData(token, expirationDate, this.userId);
     this.loadingService.setIsLoading(false);
     this.postLoginNavigation();
-    // this.router.navigate(['/rsvp-details']);
   }
 
   private setAuthTimer(duration: number) {
@@ -157,8 +156,7 @@ export class AuthService {
     this.http.get<{ detailedRsvp: detailedRsvp }>('http://localhost:3000/api/rsvp')
       .pipe(take(1))
       .subscribe(response => {
-        console.log(response.detailedRsvp);
-        if (response.detailedRsvp) {
+        if (response.detailedRsvp && response.detailedRsvp.rsvp) {
           this.router.navigate(['/wedding-details']);
         } else {
           this.router.navigate(['/rsvp-details']);

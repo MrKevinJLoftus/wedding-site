@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { RsvpService } from '../_services/rsvp.service';
 
 @Component({
   selector: 'app-nav',
@@ -28,7 +29,7 @@ export class NavComponent implements OnInit, OnDestroy {
     this.authService.logout(true);
   }
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, public rsvpService: RsvpService) {
     this.subscriptions.push(router.events.subscribe((val) => {
       this.onChangedRoute();
     }));
@@ -41,7 +42,11 @@ export class NavComponent implements OnInit, OnDestroy {
       .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     }));
-    
+    this.rsvpService.getDetailedRsvp();
+    this.subscriptions.push(this.rsvpService.rsvpUpdatedListener().subscribe(
+      (savedRsvp) => {
+        (savedRsvp && savedRsvp.rsvp) ? this.userHasRsvpdBefore = true : this.userHasRsvpdBefore = false;
+      }));
   }
 
   ngOnDestroy() {

@@ -14,6 +14,8 @@ import { take } from 'rxjs/operators';
 export class RsvpService {
   private rsvp: detailedRsvp;
   private rsvpUpdated = new Subject<detailedRsvp>();
+  private rsvpDeadline: string;
+  private rsvpDeadlineUpdated = new Subject<string>();
 
   constructor(private http: HttpClient, private router: Router, public messageService: MessageService, public loadingService: LoadingService) {}
 
@@ -40,5 +42,13 @@ export class RsvpService {
 
   rsvpUpdatedListener() {
     return this.rsvpUpdated.asObservable();
+  }
+
+  getRsvpDeadline() {
+    this.http.get<{ rsvpDeadline: string }>('http://localhost:3000/api/rsvp/deadline')
+      .subscribe(response => {
+        this.rsvpDeadline = response.rsvpDeadline;
+        this.rsvpDeadlineUpdated.next(this.rsvpDeadline);
+      })
   }
 }
