@@ -4,11 +4,9 @@ import { HomeComponent } from './home/home.component';
 import { WhenWhereComponent } from './when-where/when-where.component';
 import { CeremonyDetailsComponent } from './ceremony-details/ceremony-details.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
-import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth-guard';
 import { RsvpDetailsComponent } from './rsvp-details/rsvp-details.component';
 import { TimelineComponent } from './timeline/timeline.component';
-import { AddGuestsComponent } from './add-guests/add-guests.component';
 import { WeddingDetailsComponent } from './wedding-details/wedding-details.component';
 
 const routes: Routes = [
@@ -18,10 +16,7 @@ const routes: Routes = [
     { path: 'ceremony', component: CeremonyDetailsComponent },
     { path: 'ourStory', component: TimelineComponent },
     { path: 'rsvp', component: RsvpComponent },
-    { path: 'createUser', component: SignupComponent },
-    // { path: 'createUser', component: SignupComponent, canActivate: [AuthGuard] },
     { path: 'rsvp-details', component: RsvpDetailsComponent, canActivate: [AuthGuard] },
-    { path: 'guests', component: AddGuestsComponent, canActivate: [AuthGuard] },
     { path: 'wedding-details', component: WeddingDetailsComponent, canActivate: [AuthGuard] }
 ];
 

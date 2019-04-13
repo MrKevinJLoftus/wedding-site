@@ -18,13 +18,10 @@ import { CeremonyDetailsComponent } from './ceremony-details/ceremony-details.co
 import { ParallaxModule, ParallaxConfig } from '../../node_modules/ngx-parallax';
 import { NguiStickyModule } from '../../node_modules/@ngui/sticky';
 import { RsvpComponent } from './rsvp/rsvp.component';
-
-import { SignupComponent } from './auth/signup/signup.component';
 import { RsvpDetailsComponent } from './rsvp-details/rsvp-details.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '../../node_modules/@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { TimelineComponent } from './timeline/timeline.component';
-import { AddGuestsComponent } from './add-guests/add-guests.component';
 import { GuestComponent } from './rsvp-details/guest/guest.component';
 import { MessageComponent } from './message/message.component';
 import { WeddingDetailsComponent } from './wedding-details/wedding-details.component';
@@ -48,10 +45,8 @@ import { HttpErrorInterceptor } from './httperror.interceptor';
     AboutUsComponent,
     CeremonyDetailsComponent,
     RsvpComponent,
-    SignupComponent,
     RsvpDetailsComponent,
     TimelineComponent,
-    AddGuestsComponent,
     GuestComponent,
     MessageComponent,
     WeddingDetailsComponent,
