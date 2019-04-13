@@ -32,10 +32,8 @@ export class WeddingDetailsComponent implements OnInit, OnDestroy {
             if (!g.isPlusOne) {
               return g;
             } else {
-              if (!g.firstName && !g.lastName) {
-                g.firstName = 'Your';
-                g.lastName = 'Plus One';
-              }
+              g.firstName = 'Your';
+              g.lastName = 'Plus One';
             }
           });
           this.isAnyoneComing = this.guestsAttending.length > 0;

@@ -4,19 +4,20 @@
     <div class="container">
       <p>Please let us know who will be attending:</p>
       <div *ngFor="let guest of guests" class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
           <app-guest [details]="guest" (guestUpdated)="updateGuest($event)"></app-guest>
         </div>
         <hr class="horizontalSpacer">
       </div>
       <div class="row">
-        <div class="col-sm-8 offset-sm-2">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
           <form (ngSubmit)="onSubmit()">
             <label for="email">Your Email Address:</label>
             <br />
             <input class="sixty" name="email" type="email" email
-            id="email" [(ngModel)]="userEmail"
+            id="email" [(ngModel)]="userEmail" (focus)="clearMessage()"
             #email="ngModel" required>
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="sixty alert alert-danger">
               <div *ngIf="email?.errors.required">Email is required.</div>
@@ -42,5 +43,5 @@
   <br /><br />
 </div>
 <div *ngIf="!guests || guests.length === 0" class="section-gray text-center">
-  <p>An error has occurred. Please contact Kevin or Poornima.</p>
+  <p>An error has occurred. Please please email us at <a href="mailto:loftuspatelwedding@gmail.com">loftuspatelwedding@gmail.com</a>.</p>
 </div>

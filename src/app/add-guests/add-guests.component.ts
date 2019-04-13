@@ -14,10 +14,12 @@ export class AddGuestsComponent implements OnInit, OnDestroy {
   user = '';
   subscriptions = [];
   guests: Guest[] = [];
+  numGuests = 0;
 
   addGuest() {
+    this.numGuests++;
     this.guests.push({_id: '', firstName: '', lastName: '', isPlusOne: false,
-    isAttending: false, hasRSVPd: false, isValid: true});
+    isAttending: false, hasRSVPd: false, isValid: true, sortOrder: this.numGuests});
   }
 
   saveGuests() {

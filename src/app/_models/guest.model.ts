@@ -6,4 +6,5 @@ export interface Guest {
   isAttending: boolean;
   hasRSVPd: boolean;
   isValid: boolean;
+  sortOrder: number;
 }

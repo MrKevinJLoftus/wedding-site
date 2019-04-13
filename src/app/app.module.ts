@@ -32,6 +32,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { ContactComponent } from './contact/contact.component';
+import { HttpErrorInterceptor } from './httperror.interceptor';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ContactComponent } from './contact/contact.component';
     AlertModule.forRoot()
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

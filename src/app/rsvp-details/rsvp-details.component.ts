@@ -37,8 +37,12 @@ export class RsvpDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit() {
+  clearMessage() {
     this.messageService.clearMessage();
+  }
+
+  onSubmit() {
+    this.clearMessage();
     // validate any attending plus ones have names
     for (let i = 0; i < this.guests.length; i++) {
       if (this.guests[i].isAttending && this.guests[i].isPlusOne && !this.guests[i].isValid) {

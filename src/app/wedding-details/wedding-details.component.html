@@ -13,13 +13,13 @@
           <accordion-group *ngIf="hasRsvpd" heading="Your RSVP" [isOpen]="true">
             <div class="bkc">
               <div *ngIf="guestsAttending.length > 0 && guestsNotAttending.length > 0" class="row">
-                <div class="col-sm-6">
+                <div class="col-xs-6">
                   <h2><u>Attending:</u></h2>
                   <div *ngFor="let guest of rsvpDetails.guests">
                     <p *ngIf="guest.isAttending">{{guest.firstName}}&nbsp;{{guest.lastName}}</p>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-xs-6">
                   <h2><u>Not Attending:</u></h2>
                   <div *ngFor="let guest of rsvpDetails.guests">
                     <p *ngIf="!guest.isAttending">{{guest.firstName}}&nbsp;{{guest.lastName}}</p>
@@ -27,7 +27,7 @@
                 </div>
               </div>
               <div *ngIf="guestsAttending.length > 0 && guestsNotAttending.length === 0" class="row">
-                <div class="col-sm-8 offset-sm-2">
+                <div class="col-xs-8 offset-xs-2">
                   <h2><u>Attending:</u></h2>
                   <div *ngFor="let guest of rsvpDetails.guests">
                     <p *ngIf="guest.isAttending">{{guest.firstName}}&nbsp;{{guest.lastName}}</p>
@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div *ngIf="!isAnyoneComing && guestsNotAttending.length > 0" class="row">
-                  <div class="col-sm-8 offset-sm-2">
+                  <div class="col-xs-8 offset-xs-2">
                     <h2><u>Not Attending:</u></h2>
                     <div *ngFor="let guest of rsvpDetails.guests">
                       <p *ngIf="!guest.isAttending">{{guest.firstName}}&nbsp;{{guest.lastName}}</p>
@@ -44,12 +44,13 @@
                 </div>
               <hr class="horizontalSpacer" />
               <div class="row">
-                <div class="col-sm-8 offset-2">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-8">
                   <p>Your confirmation email was sent to {{rsvpDetails.email}} on {{rsvpDetails.rsvp.dateSubmitted | date}}.</p>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-xs-12">
                   <button class="btn btn-sm btn-link btn-block border" (click)="rsvpAgain()"><b>Edit My RSVP</b></button>
                 </div>
               </div>
@@ -58,7 +59,7 @@
           <accordion-group *ngIf="!hasRsvpd" heading="RSVP" [isOpen]="true">
             <div class="row">
               <br />
-              <div class="col-sm-12">
+              <div class="col-xs-12">
                 <button class="btn btn-sm btn-link btn-block border" (click)="rsvpAgain()"><b>Please RSVP</b></button>
               </div>
               <br />
@@ -66,8 +67,8 @@
           </accordion-group>
           <accordion-group heading="Dinner">
             <div class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-8">
+              <div class="col-xs-2"></div>
+              <div class="col-xs-8">
                 <p>
                   Hors d'oeuvres will be served during the cocktail hour, and a vegetarian buffet of Indian cuisine will be served during the reception.
                 </p>
@@ -76,8 +77,8 @@
           </accordion-group>
           <accordion-group heading="Directions">
               <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-8">
                   <strong><u>From Baltimore/Washington International Thurgood Marshall Airport</u></strong>
                   <p>The BWI Airport Marriott Hotel provides a courtesy shuttle to and from the BWI Airport. The shuttle runs every 20 minutes, starting at 4 am and running until 1 am.</p>
                   <p>The BWI Airport Marriott Hotel is 2 miles and a 10 minute drive from the BWI Airport. Taxis are available, as are the Lyft and Uber ride services.</p>
@@ -97,13 +98,13 @@
             </accordion-group>
           <accordion-group heading="Accommodations">
             <div class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-8">
+              <div class="col-xs-2"></div>
+              <div class="col-xs-8">
                 <p>We have a wedding block of rooms at the BWI Airport Marriott available for our guests at a group rate of $99 per night. Please click the button below if you would like to reserve a room. The deadline for reserving a room at our group rate is July 26th, 2019.</p>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-xs-12">
                 <a class="btn btn-sm btn-link btn-block"
                 target="_blank"
                 href="http://www.marriott.com/meeting-event-hotels/group-corporate-travel/groupCorp.mi?resLinkData=Patel-Loftus%20Wedding%20In%20Honor%20of%20Nima%20and%20Kevin%5EBWIAP%60PLWPLWA%7CPLWPLWB%6099.00%60USD%60true%605%608/16/19%608/18/19%607/26/19&app=resvlink&stop_mobi=yes">
@@ -113,27 +114,28 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-8 offset-sm-2">
+              <div class="col-xs-2"></div>
+              <div class="col-xs-8">
                 <p>The BWI Airport Marriott also offers a complimentary shuttle to and from the BWI Airport. The shuttle picks up passengers at BWI from Shuttle Zone #1 (door #1, concourses A/B/C), Shuttle Zone #3 (door #14/15, concourses C/D), and Shuttle Zone #4 (door #18/19, concourse E). If you would like to use this free service, please call the hotel at 410-859-8300 when you are at the Shuttle Zone and ready for pick up.</p>
               </div>
             </div>
           </accordion-group>
           <accordion-group heading="Gift Registry">
             <div class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-8">
+              <div class="col-xs-2"></div>
+              <div class="col-xs-8">
                 <p>Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we have registered with Amazon and with Crate&Barrel.</p>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-xs-6">
                 <a class="btn btn-sm btn-link btn-block"
                 target="_blank"
                 href="https://www.amazon.com/wedding/kevin-loftus-poornima-patel-baltimore-august-2019/registry/1OVSD029OPWIR">
                   <b>Browse Amazon</b>
                 </a>
               </div>
-              <div class="col-sm-6">
+              <div class="col-xs-6">
                 <a class="btn btn-sm btn-link btn-block"
                 target="_blank"
                 href="https://www.crateandbarrel.com/gift-registry/kevin-loftus-and-poornima-patel/r5983386">
@@ -144,8 +146,8 @@
           </accordion-group>
           <accordion-group heading="Contact Us">
               <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-8">
                   <p>If you have any questions or concerns, please feel free to email us at <a href="mailto:loftuspatelwedding@gmail.com">loftuspatelwedding@gmail.com</a>.</p>
                 </div>
               </div>

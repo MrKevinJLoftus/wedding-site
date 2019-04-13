@@ -15,6 +15,7 @@ export class GuestComponent implements OnInit {
   isAttending = true;
   isPlusOne = false;
   isValid = true;
+  sortOrder = 999;
 
   toggleAccept(attending: boolean) {
     this.isAttending = attending;
@@ -38,7 +39,8 @@ export class GuestComponent implements OnInit {
       isPlusOne: this.details.isPlusOne,
       isAttending: this.isAttending,
       hasRSVPd: this.details.hasRSVPd,
-      isValid: this.isValid
+      isValid: this.isValid,
+      sortOrder: this.sortOrder
     });
   }
 

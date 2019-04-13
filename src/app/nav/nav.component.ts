@@ -41,8 +41,11 @@ export class NavComponent implements OnInit, OnDestroy {
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
+      if (isAuthenticated) {
+        this.rsvpService.getDetailedRsvp();
+      }
     }));
-    this.rsvpService.getDetailedRsvp();
+    
     this.subscriptions.push(this.rsvpService.rsvpUpdatedListener().subscribe(
       (savedRsvp) => {
         (savedRsvp && savedRsvp.rsvp) ? this.userHasRsvpdBefore = true : this.userHasRsvpdBefore = false;

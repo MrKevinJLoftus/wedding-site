@@ -19,12 +19,10 @@ export class RsvpComponent implements OnInit, OnDestroy {
 
   onLogin(form: NgForm) {
     if (form.invalid) {
-      this.messageService.setMessage('Please enter your username and password.','alert-danger');
+      this.messageService.setMessage('Please enter your username and password.','info');
       return;
     }
-    // this.isLoading = true;
     this.loadingService.setIsLoading(true);
-    console.log('just set loadingService loading to true');
     this.authService.login(form.value.username, form.value.password);
   }
 
@@ -39,7 +37,6 @@ export class RsvpComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(this.loadingService.getIsLoadingListener().subscribe((loading) => {
-      console.log(`rsvp component isLoading: ${loading}`);
       this.isLoading = loading;
     }));
     this.subscriptions.push(this.authService.getAuthStatusListener().subscribe((authStatus) => {

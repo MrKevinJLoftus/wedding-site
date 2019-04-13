@@ -26,11 +26,10 @@ export class GuestService {
               isPlusOne: g.isPlusOne,
               isAttending: g.isAttending,
               hasRSVPd: g.hasRSVPd,
-              isValid: true
+              isValid: true,
+              sortOrder: g.sortOrder
             };
-          }).sort((a, b) => {
-            return a.isPlusOne > b.isPlusOne ? 1 : -1;
-          });
+          }).sort((a, b) => a.sortOrder > b.sortOrder ? 1 : -1);
         }
         this.guestsUpdated.next([...this.guests]);
     });
