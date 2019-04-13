@@ -35,14 +35,6 @@ export class GuestService {
     });
   }
 
-  saveGuests(newGuests: Guest[]) {
-    this.http.post<{ guestsAdded: Guest[] }>('http://localhost:3000/api/guest', newGuests)
-      .subscribe(response => {
-        this.guests = response.guestsAdded;
-        this.guestsUpdated.next([...this.guests]);
-      });
-  }
-
   guestsUpdatedListener() {
     return this.guestsUpdated.asObservable();
   }

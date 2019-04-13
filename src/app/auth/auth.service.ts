@@ -44,22 +44,6 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
-  createUser(username: string, password: string) {
-    this.loadingService.setIsLoading(true);
-    const authData: AuthData = {username: username, password: password};
-    this.http.post<{token: string, expiresIn: number, userId: string}>('http://localhost:3000/api/user/signup', authData)
-      .subscribe(response => {
-        const token = response.token;
-        this.token = token;
-        if (token) {
-          const expiresInDuration = response.expiresIn;
-          this.loginSetup(expiresInDuration, response.userId, token);
-        }
-    }, error => {
-      console.log(error);
-    });
-  }
-
   login(username: string, password: string) {
     const authData: AuthData = {username: username, password: password};
     this.http.post<{token: string, expiresIn: number, username: string, userId: string}>(
