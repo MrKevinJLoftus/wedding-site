@@ -18,7 +18,6 @@ export class MessageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.messageService.getMessageListener().subscribe(
       (m) => {
         if (m) {
-          console.log(`message received! *${m.type}* ${m.message}`);
           this.message = {
             message: m.message,
             type: m.type

@@ -28,7 +28,6 @@ import { WeddingDetailsComponent } from './wedding-details/wedding-details.compo
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { ContactComponent } from './contact/contact.component';
 import { HttpErrorInterceptor } from './httperror.interceptor';
 
 @NgModule({
@@ -50,8 +49,7 @@ import { HttpErrorInterceptor } from './httperror.interceptor';
     GuestComponent,
     MessageComponent,
     WeddingDetailsComponent,
-    LoadingSpinnerComponent,
-    ContactComponent
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
