@@ -29,6 +29,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { HttpErrorInterceptor } from './httperror.interceptor';
+import { RsvpReportComponent } from './admin_ftns/rsvp-report/rsvp-report.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { HttpErrorInterceptor } from './httperror.interceptor';
     GuestComponent,
     MessageComponent,
     WeddingDetailsComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    RsvpReportComponent
   ],
   imports: [
     BrowserModule,

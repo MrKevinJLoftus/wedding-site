@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Guest } from '../_models/guest.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { RSVP, uiRsvp, detailedRsvp } from '../_models/rsvp.model';
+import { uiRsvp, detailedRsvp } from '../_models/rsvp.model';
 import { MessageService } from './message.service';
 import { LoadingService } from './loading.service';
-import { take } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,7 @@ export class RsvpService {
   constructor(private http: HttpClient, private router: Router, public messageService: MessageService, public loadingService: LoadingService) {}
 
   getDetailedRsvp() {
-    this.http.get<{ detailedRsvp: detailedRsvp }>('http://localhost:3000/api/rsvp')
+    this.http.get<{ detailedRsvp: detailedRsvp }>(`${environment.apiUrl}/rsvp`)
       .subscribe(response => {
         this.rsvp = response.detailedRsvp;
         this.rsvpUpdated.next(this.rsvp);
@@ -29,7 +28,7 @@ export class RsvpService {
 
   saveRsvp(newRsvp: uiRsvp) {
     this.loadingService.setIsLoading(true);
-    this.http.post<{ message: string, rsvpSaved: boolean }>('http://localhost:3000/api/rsvp/respond', newRsvp)
+    this.http.post<{ message: string, rsvpSaved: boolean }>(`${environment.apiUrl}/rsvp/respond`, newRsvp)
       .subscribe(response => {
         this.loadingService.setIsLoading(false);
         if (!response.rsvpSaved) {
@@ -45,7 +44,7 @@ export class RsvpService {
   }
 
   getRsvpDeadline() {
-    this.http.get<{ rsvpDeadline: string }>('http://localhost:3000/api/rsvp/deadline')
+    this.http.get<{ rsvpDeadline: string }>(`${environment.apiUrl}/rsvp/deadline`)
       .subscribe(response => {
         this.rsvpDeadline = response.rsvpDeadline;
         this.rsvpDeadlineUpdated.next(this.rsvpDeadline);
