@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Guest } from '../_models/guest.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class GuestService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getGuests() {
-    this.http.get<{ guests: any[] }>(`${environment.apiUrl}/guest`)
+    this.http.get<{ guests: any[] }>('http://localhost:3000/api/guest')
       .subscribe(response => {
         if (response.guests) {
           this.guests = response.guests.map(g => {

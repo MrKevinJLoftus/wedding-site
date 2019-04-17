@@ -9,7 +9,6 @@ import { MessageService } from '../_services/message.service';
 import { LoadingService } from '../_services/loading.service';
 import { RsvpService } from '../_services/rsvp.service';
 import { detailedRsvp } from '../_models/rsvp.model';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +47,7 @@ export class AuthService {
   login(username: string, password: string) {
     const authData: AuthData = {username: username, password: password};
     this.http.post<{token: string, expiresIn: number, username: string, userId: string}>(
-      `${environment.apiUrl}/user/login`, authData)
+      'http://localhost:3000/api/user/login', authData)
       .subscribe(response => {
         if (response.token) {
           const token = response.token;
@@ -138,7 +137,7 @@ export class AuthService {
   }
 
   private postLoginNavigation() {
-    this.http.get<{ detailedRsvp: detailedRsvp }>(`${environment.apiUrl}/rsvp`)
+    this.http.get<{ detailedRsvp: detailedRsvp }>('http://localhost:3000/api/rsvp')
       .pipe(take(1))
       .subscribe(response => {
         if (response.detailedRsvp && response.detailedRsvp.rsvp) {
