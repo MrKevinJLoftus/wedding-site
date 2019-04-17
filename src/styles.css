@@ -7,3 +7,20 @@
 @import url("./assets/styles/style.css");
 @import url('https://fonts.googleapis.com/css?family=Eczar');
 @import url('https://fonts.googleapis.com/css?family=Montez');
+
+.pointer {
+  cursor: pointer;
+}
+
+.sharp {
+  border-radius: 0%;
+}
+
+.sixty {
+  width: 60%;
+  margin: auto;
+  padding: 0;
+}
+.responsive-main {
+  padding-top: 4em;
+}

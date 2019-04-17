@@ -1,0 +1,12 @@
+.horizontalSpacer {
+  width: 50%;
+}
+
+.submitBtn {
+  background-color: #2DA58A;
+  color: white;
+}
+
+#email {
+  text-align: center;
+}

@@ -1,7 +1,38 @@
+app-header {
+  width: 100%;
+}
 .div-middle div[ngui-sticky] {
     margin: 0;
     background: #fff;
   }
 .sticky-container {
   overflow: hidden !important;
+}
+
+#wrapper {
+  min-height: 100vh;
+  background-color: #F6FAF7;
+}
+.main-content {
+  height: 100%;
+}
+@media (max-height: 850px){
+  .main-content {
+    min-height: 444px;
+  }
+}
+@media (min-height: 850px) and (max-height: 1080px){
+  .main-content {
+    min-height: 674px;
+  }
+}
+@media (min-height: 1080px) and (max-height: 1280px) {
+  .main-content {
+    min-height: 874px;
+  }
+}
+@media (min-height: 1280px) {
+  .main-content {
+    min-height: 1514px;
+  }
 }

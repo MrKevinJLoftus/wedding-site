@@ -1,30 +1,33 @@
 <div class="section-gray text-center">
   <div class="container">
-    <main>
+    <main class="responsive-main">
       <hr class="horizontalSpacer">
       <h1>RSVP</h1>
-      <div class="loadingSpinner" *ngIf="isLoading">
-        <mat-spinner></mat-spinner>
-      </div>
-      <div *ngIf="!isLoading && isReleased">
-        <p>Please enter your login information provided in your invitation. If you did not receive login information, please contact Poornima or Kevin.</p>
-        <form (submit)="this.onLogin(loginForm)" #loginForm="ngForm">
+      <div *ngIf="isReleased">
+        <p>Please enter the login information provided in your invitation. If you have any questions, please email us at <a href="mailto:loftuspatelwedding@gmail.com">loftuspatelwedding@gmail.com</a>.</p>
+        <p>Please RSVP by Monday, July 15th, 2019.</p>
+        <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
           <input name="username"
           ngModel
           #usernameInput="ngModel"
           type="username"
           placeholder="Username"
           required
-          username>
+          username
+          (focus)="clearMessage()">
           <br />
           <input name="password"
           ngModel
           #passwordInput="ngModel"
           type="password"
           placeholder="Password"
-          required>
+          required
+          password
+          (focus)="clearMessage()">
           <br /><br />
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <app-message></app-message>
+          <button type="submit" class="btn btn-primary" *ngIf="!isLoading">Submit</button>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
         </form>
         <hr class="horizontalSpacer">
       </div>

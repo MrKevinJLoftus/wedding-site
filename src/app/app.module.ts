@@ -8,7 +8,7 @@ import { CoupleSectionComponent } from './couple-section/couple-section.componen
 import { CountdownComponent } from './countdown/countdown.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { WhenWhereComponent } from './when-where/when-where.component';
@@ -18,13 +18,17 @@ import { CeremonyDetailsComponent } from './ceremony-details/ceremony-details.co
 import { ParallaxModule, ParallaxConfig } from '../../node_modules/ngx-parallax';
 import { NguiStickyModule } from '../../node_modules/@ngui/sticky';
 import { RsvpComponent } from './rsvp/rsvp.component';
-
-import { SignupComponent } from './auth/signup/signup.component';
 import { RsvpDetailsComponent } from './rsvp-details/rsvp-details.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '../../node_modules/@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
-import { AngularMaterialModule } from './angular-material.module';
 import { TimelineComponent } from './timeline/timeline.component';
+import { GuestComponent } from './rsvp-details/guest/guest.component';
+import { MessageComponent } from './message/message.component';
+import { WeddingDetailsComponent } from './wedding-details/wedding-details.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { HttpErrorInterceptor } from './httperror.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,22 +44,28 @@ import { TimelineComponent } from './timeline/timeline.component';
     AboutUsComponent,
     CeremonyDetailsComponent,
     RsvpComponent,
-    SignupComponent,
     RsvpDetailsComponent,
-    TimelineComponent
+    TimelineComponent,
+    GuestComponent,
+    MessageComponent,
+    WeddingDetailsComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ParallaxModule,
     NguiStickyModule,
-    AngularMaterialModule
+    AccordionModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

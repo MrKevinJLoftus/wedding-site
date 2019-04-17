@@ -1,6 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth/auth.service';
+import { MessageService } from './_services/message.service';
+import { RsvpService } from './_services/rsvp.service';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +12,19 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent implements OnInit {
   title = 'Poornima & Kevin';
   fixed = false;
-
   isHomeSelected = false;
 
   onChangedRoute() {
    this.isHomeSelected = this.router.url === '/home' || this.router.url === '/';
+   this.messageService.clearMessage();
   }
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, 
+    private router: Router, 
+    public messageService: MessageService) {
     router.events.subscribe((val) => {
       this.onChangedRoute();
-    })
+    });
    }
 
   ngOnInit() {
@@ -36,5 +40,4 @@ export class AppComponent implements OnInit {
         this.fixed = false;
       }
     }
-    
 }
