@@ -8,6 +8,14 @@
 @import url('https://fonts.googleapis.com/css?family=Eczar');
 @import url('https://fonts.googleapis.com/css?family=Montez');
 
+@font-face {
+    font-family: 'Montez';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montez Regular'), local('Montez-Regular'), url(https://fonts.gstatic.com/s/montez/v9/845ZNMk5GoGIX8lW07rZ.woff) format('woff');
+  }
+  
+
 .pointer {
   cursor: pointer;
 }
