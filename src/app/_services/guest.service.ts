@@ -36,6 +36,22 @@ export class GuestService {
     });
   }
 
+  saveGuests(newGuests: Guest[]) {
+    this.http.post<{ guestsAdded: Guest[] }>(`${environment.apiUrl}/guest`, newGuests)
+      .subscribe(response => {
+        this.guests = response.guestsAdded;
+        this.guestsUpdated.next([...this.guests]);
+      });
+  }
+
+  addExtraGuests(newGuests: Guest[]) {
+    this.http.post<{ guestsAdded: Guest[] }>(`${environment.apiUrl}/guest/extra`, newGuests)
+      .subscribe(response => {
+        console.log(response);
+        this.getGuests();
+      });
+  }
+
   guestsUpdatedListener() {
     return this.guestsUpdated.asObservable();
   }

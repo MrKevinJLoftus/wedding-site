@@ -8,6 +8,8 @@ import { AuthGuard } from './auth/auth-guard';
 import { RsvpDetailsComponent } from './rsvp-details/rsvp-details.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { WeddingDetailsComponent } from './wedding-details/wedding-details.component';
+import { AddGuestsComponent } from './admin/add-guests/add-guests.component';
+import { RsvpReportComponent } from './admin/reports/rsvp/rsvp-report.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,7 +19,9 @@ const routes: Routes = [
     { path: 'ourStory', component: TimelineComponent },
     { path: 'rsvp', component: RsvpComponent },
     { path: 'rsvp-details', component: RsvpDetailsComponent, canActivate: [AuthGuard] },
-    { path: 'wedding-details', component: WeddingDetailsComponent, canActivate: [AuthGuard] }
+    { path: 'wedding-details', component: WeddingDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'add-guests', component: AddGuestsComponent, canActivate: [AuthGuard] },
+    { path: 'rsvp-report', component: RsvpReportComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

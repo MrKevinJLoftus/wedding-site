@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
+      <h1>RSVP Report</h1>
+    </div>
+  </div>
+  <div *ngIf="reportData && reportData.totalGuestsComing" class="row">
+    <div class="col-xs-6">
+      <p><strong>Total Guests Coming: {{reportData.totalGuestsComing}}</strong></p>
+      <p><strong>Guests Who Have RSVPd and Are Not Coming: {{reportData.numberOfGuestsWhoHaveRsvpdAndAreNotComing}}</strong></p>
+      <p><strong>Number of Guests Who Have RSVPd: {{reportData.numberOfGuestsRsvpd}}</strong></p>
+    </div>
+  </div>
+  <div *ngIf="reportData.reportData && reportData.reportData.length > 0" class="row">
+    <div class="col-xs-12">
+      <table class="table border border-dark">
+        <tr>
+          <th>User</th>
+          <th>Guests Attending</th>
+          <th>Guests Not Attending</th>
+          <th>RSVPs</th>
+        </tr>
+        <tr *ngFor="let r of reportData.reportData">
+          <td>{{r.userName}}</td>
+          <td class="border border-dark">
+            <span *ngIf="r.guestsAttending.length === 0">-</span>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let g of r.guestsAttending">{{g.firstName}}&nbsp;{{g.lastName}}</li>
+            </ul>
+          </td>
+          <td class="border border-dark">
+              <span *ngIf="r.guestsNotAttending.length === 0">-</span>
+              <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let g of r.guestsNotAttending">{{g.firstName}}&nbsp;{{g.lastName}}</li>
+              </ul>
+          </td>
+          <td class="border border-dark">
+            <ul class="list-group">
+              <li *ngIf="r.rsvps.length === 0">Has Not RSVP'd Yet</li>
+              <li class="list-group-item" *ngFor="let rsvp of r.rsvps">
+                <p>{{rsvp.dateSubmitted | date}}</p>
+                <p>Comments: {{rsvp.comments}}</p>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
