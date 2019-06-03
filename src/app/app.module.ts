@@ -31,6 +31,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { HttpErrorInterceptor } from './httperror.interceptor';
 import { AddGuestsComponent } from './admin/add-guests/add-guests.component';
 import { RsvpReportComponent } from './admin/reports/rsvp/rsvp-report.component';
+import { CreateUserComponent } from './admin/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { RsvpReportComponent } from './admin/reports/rsvp/rsvp-report.component'
     WeddingDetailsComponent,
     LoadingSpinnerComponent,
     AddGuestsComponent,
-    RsvpReportComponent
+    RsvpReportComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

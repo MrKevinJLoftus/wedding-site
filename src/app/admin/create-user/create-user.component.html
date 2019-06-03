@@ -1,0 +1,41 @@
+<div class="section-gray text-center">
+  <div class="container">
+    <main class="responsive-main">
+      <hr class="horizontalSpacer">
+      <h1>Create User</h1>
+      <div *ngIf="isReleased">
+        <p>Enter new user info</p>
+        <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+          <input name="username"
+          ngModel
+          #usernameInput="ngModel"
+          type="username"
+          placeholder="Username"
+          required
+          username
+          (focus)="clearMessage()">
+          <br />
+          <input name="password"
+          ngModel
+          #passwordInput="ngModel"
+          type="password"
+          placeholder="Password"
+          required
+          password
+          (focus)="clearMessage()">
+          <br /><br />
+          <app-message></app-message>
+          <button type="submit" class="btn btn-primary" *ngIf="!isLoading">Submit</button>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+        </form>
+        <hr class="horizontalSpacer">
+      </div>
+      <div *ngIf="!isReleased">
+        <br />
+        <p>Formal invitations will be mailed in April, 2019. Please check back then!</p>
+        <br />
+        <hr class="horizontalSpacer">
+      </div>
+  </main>
+  </div>
+</div>

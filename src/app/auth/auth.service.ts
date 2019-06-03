@@ -65,6 +65,22 @@ export class AuthService {
     });
   }
 
+  createUser(username: string, password: string) {
+    this.loadingService.setIsLoading(true);
+    const authData: AuthData = {username: username, password: password};
+    this.http.post<{token: string, expiresIn: number, userId: string}>(`${environment.apiUrl}/user/signup`, authData)
+      .subscribe(response => {
+        const token = response.token;
+        this.token = token;
+        if (token) {
+          const expiresInDuration = response.expiresIn;
+          this.loginSetup(expiresInDuration, response.userId, token);
+        }
+    }, error => {
+      console.log(error);
+    });
+  }
+
   autoAuthUser() {
     const authInformation = this.getAuthData();
     if (!authInformation) {

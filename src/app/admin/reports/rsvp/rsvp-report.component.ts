@@ -31,7 +31,7 @@ export class RsvpReportComponent implements OnInit {
           row.rsvps = row.rsvps.map((rsvpObj) => {
             return {
               dateSubmitted: rsvpObj.dateSubmitted,
-              comments: decodeURI(rsvpObj.comments)
+              comments: rsvpObj.comments
             }
           });
         });
