@@ -5,18 +5,57 @@
       <h1>RSVP Report</h1>
     </div>
   </div>
-  <div *ngIf="reportData && reportData.totalGuestsComing" class="row">
+  <div *ngIf="metaReportData && metaReportData.totalGuestsComing" class="row">
     <div class="col-xs-12">
-      <p><strong>Total Guests Coming: {{reportData.totalGuestsComing}}</strong></p>
-      <p><strong>Guests Who Have RSVPd and Are Not Coming: {{reportData.numberOfGuestsWhoHaveRsvpdAndAreNotComing}}</strong></p>
-      <p><strong>Number of Guests Who Have RSVPd: {{reportData.numberOfGuestsRsvpd}}</strong></p>
-      <p><strong><b>Maximum Number of Attending Guests</b>&nbsp;(total invited - total that rsvp'd no): {{reportData.totalNumberOfGuests - reportData.numberOfGuestsWhoHaveRsvpdAndAreNotComing}}</strong></p>
+      <p><strong>Total Guests Coming: {{metaReportData.totalGuestsComing}}</strong></p>
+      <p><strong>Guests Who Have RSVPd and Are Not Coming: {{metaReportData.numberOfGuestsWhoHaveRsvpdAndAreNotComing}}</strong></p>
+      <p><strong>Number of Guests Who Have RSVPd: {{metaReportData.numberOfGuestsRsvpd}}</strong></p>
+      <p><strong><b>Maximum Number of Attending Guests</b>&nbsp;(total invited - total that rsvp'd no): {{metaReportData.totalNumberOfGuests - metaReportData.numberOfGuestsWhoHaveRsvpdAndAreNotComing}}</strong></p>
     </div>
   </div>
-  <div *ngIf="reportData.reportData && reportData.reportData.length > 0" class="row">
+  <div class="row">
     <div class="col-xs-12">
-      <table class="table border border-dark">
-        <tr>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <table mat-table [dataSource]="reportData" matSort>
+          <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+            <td mat-cell *matCellDef="let element">{{element.userName}}</td>
+          </ng-container>
+          <ng-container matColumnDef="guestsAttending">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Guests Attending</th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="element.guestsAttending.length === 0">-</span>
+              <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let g of element.guestsAttending">{{g.firstName}}&nbsp;{{g.lastName}}</li>
+              </ul>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="guestsNotAttending">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Guests Not Attending</th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="element.guestsNotAttending.length === 0">-</span>
+              <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let g of element.guestsNotAttending">{{g.firstName}}&nbsp;{{g.lastName}}</li>
+              </ul>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="rsvps">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>RSVPs</th>
+            <td mat-cell *matCellDef="let element">
+                <ul class="list-group">
+                  <li *ngIf="element.rsvps.length === 0">Has Not RSVP'd Yet</li>
+                  <li class="list-group-item" *ngFor="let rsvp of element.rsvps">
+                    <p>{{rsvp.dateSubmitted | date}}</p>
+                    <p>Comments: {{rsvp.comments}}</p>
+                  </li>
+                </ul>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <!-- <tr>
           <th>User</th>
           <th>Guests Attending</th>
           <th>Guests Not Attending</th>
@@ -45,8 +84,9 @@
               </li>
             </ul>
           </td>
-        </tr>
+        </tr> -->
       </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
   </div>
 </div>

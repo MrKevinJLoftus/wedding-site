@@ -32,6 +32,14 @@ import { HttpErrorInterceptor } from './httperror.interceptor';
 import { AddGuestsComponent } from './admin/add-guests/add-guests.component';
 import { RsvpReportComponent } from './admin/reports/rsvp/rsvp-report.component';
 import { CreateUserComponent } from './admin/create-user/create-user.component';
+import { GuestReportComponent } from './admin/reports/guest/guest.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ReportsComponent } from './admin/reports/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +63,9 @@ import { CreateUserComponent } from './admin/create-user/create-user.component';
     LoadingSpinnerComponent,
     AddGuestsComponent,
     RsvpReportComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    GuestReportComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +77,13 @@ import { CreateUserComponent } from './admin/create-user/create-user.component';
     ParallaxModule,
     NguiStickyModule,
     AccordionModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTabsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

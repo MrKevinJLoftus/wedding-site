@@ -26,4 +26,12 @@ export class AdminService {
     return this.reportDataListener.asObservable();
   }
 
+  runGuestReport() {
+    this.http.get<{ results: any }>(`${environment.apiUrl}/report/guest`)
+    .subscribe(response => {
+      this.reportData = response.results;
+      this.reportDataListener.next(this.reportData);
+    });
+  }
+
 }

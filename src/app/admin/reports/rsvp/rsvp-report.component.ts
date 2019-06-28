@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../../admin.service';
 import { Subscription } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-rsvp',
+  selector: 'app-rsvp-report',
   templateUrl: './rsvp-report.component.html',
   styleUrls: ['./rsvp-report.component.css']
 })
 export class RsvpReportComponent implements OnInit {
 
-  reportData = {};
+  reportData: any = [];
+  metaReportData: any = {};
   subscriptions: Subscription[] = [];
+  displayedColumns: string[] = ['userName','guestsAttending','guestsNotAttending','rsvps'];
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(public adminService: AdminService) { }
 
@@ -35,7 +42,10 @@ export class RsvpReportComponent implements OnInit {
             }
           });
         });
-        this.reportData = results;
+        this.metaReportData = results;
+        this.reportData = new MatTableDataSource(results.reportData);
+        this.reportData.sort = this.sort;
+        this.reportData.paginator = this.paginator;
       }
     }));
   }
@@ -45,8 +55,10 @@ export class RsvpReportComponent implements OnInit {
   }
 
   unsubscribe() {
-    this.subscriptions.forEach((s) => {
-      s.unsubscribe();
-    });
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  applyFilter(filterValue: string) {
+    this.reportData.filter = filterValue.trim().toLowerCase();
   }
 }
