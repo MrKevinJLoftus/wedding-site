@@ -40,6 +40,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ReportsComponent } from './admin/reports/reports/reports.component';
+import { GuestTextComponent } from './admin/reports/guest-text/guest-text.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { ReportsComponent } from './admin/reports/reports/reports.component';
     RsvpReportComponent,
     CreateUserComponent,
     GuestReportComponent,
-    ReportsComponent
+    ReportsComponent,
+    GuestTextComponent
   ],
   imports: [
     BrowserModule,

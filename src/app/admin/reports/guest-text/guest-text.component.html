@@ -1,0 +1,10 @@
+<div class="pad">
+  <h1>RSVPd</h1>
+  <div class="row" *ngFor="let guest of hasRsvpd">
+    <p *ngIf="guest.hasRSVPd">{{guest.firstName}} {{guest.lastName}}<span *ngIf="guest.isAttending">&#x2714;</span></p>
+  </div>
+  <h1>Not RSVPd Yet</h1>
+  <div class="row" *ngFor="let guest of hasNotRsvpd">
+    <p *ngIf="!guest.hasRSVPd">{{guest.firstName}} {{guest.lastName}}</p>
+  </div>
+</div>
