@@ -1,0 +1,16 @@
+.what-to-wear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.what-to-wear div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+.whenwhere {
+    padding: 2rem 0 2rem;
+}
