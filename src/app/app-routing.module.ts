@@ -15,7 +15,6 @@ const routes: Routes = [
     { path: 'whenwhere', component: WhenWhereComponent },
     { path: 'ceremony', component: CeremonyDetailsComponent },
     { path: 'ourStory', component: TimelineComponent },
-    { path: 'rsvp', component: RsvpComponent },
     { path: 'rsvp-details', component: RsvpDetailsComponent, canActivate: [AuthGuard] },
     { path: 'wedding-details', component: WeddingDetailsComponent, canActivate: [AuthGuard] }
 ];
