@@ -20,15 +20,19 @@ export class CountdownComponent implements OnInit {
 
   ngOnInit() {
     this.endDate = new Date('Sat, 17 Aug 2019 15:00:00 EST');
-    const timer = interval(1000);
-    timer.subscribe((x) => {
-      const startDate = Date.now();
-      this.diff = this.endDate - startDate;
-      this.days = Math.floor(this.diff / (1000 * 60 * 60 * 24));
-      this.hours = Math.floor((this.diff / (1000 * 60 * 60)) % 24);
-      this.minutes = Math.floor((this.diff / (1000 * 60)) % 60);
-      this.seconds = Math.floor((this.diff / (1000)) % 60);
-    });
+    // const timer = interval(1000);
+    // timer.subscribe((x) => {
+    //   const startDate = Date.now();
+    //   this.diff = this.endDate - startDate;
+    //   this.days = Math.floor(this.diff / (1000 * 60 * 60 * 24));
+    //   this.hours = Math.floor((this.diff / (1000 * 60 * 60)) % 24);
+    //   this.minutes = Math.floor((this.diff / (1000 * 60)) % 60);
+    //   this.seconds = Math.floor((this.diff / (1000)) % 60);
+    // });
+    this.days = 0;
+    this.hours = 0;
+    this.minutes = 0;
+    this.seconds = 0;
   }
 
 }
